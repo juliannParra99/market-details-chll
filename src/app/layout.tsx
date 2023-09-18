@@ -16,7 +16,15 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body >
+        <header className='flex h-16 bg-yellow-300 px-4'>
+          <form action="" className='m-auto flex max-w-screen-xl flex-1 gap-4'>
+            <input type="text" name="search" className='h-8 flex-1 px-2 text-white'/>
+            <button className='bg-gray-200 px-2 py-1 text-slate-700'>Buscar</button>
+          </form>
+        </header>
+        <main className='max-w-screen-xl p-4'></main>
+      </body>
     </html>
   )
 }
