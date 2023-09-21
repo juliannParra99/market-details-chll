@@ -2,6 +2,7 @@
 //api: https://api.mercadolibre.com/sites/MLA/search?q=
 
 import Link from "next/link";
+import api from "@/api";
 
 //para el ejemplo
 //https://api.mercadolibre.com/sites/MLA/search?q=iphone&limit=4
@@ -10,28 +11,9 @@ export default async function ItemsPage({
 }: {
   searchParams: { search: string };
 }) {
-  // Aquí, se realiza una solicitud HTTP a la API de MercadoLibre utilizando la función fetch. La URL se construye utilizando el valor search de searchParams. Luego, se analiza la respuesta JSON para obtener el campo results. La respuesta JSON se tipa explícitamente para asegurarse de que coincida con la estructura esperada.
-  const { results } =
-    await fetch(`https://api.mercadolibre.com/sites/MLA/search?q=${searchParams.search}&limit=4
-  `).then(
-      (res) =>
-        res.json() as Promise<{
-          results: {
-            id: string;
-            title: string;
-            thumbnail: string;
-            price: number;
-            currency_id: string;
-            seller_address: {
-              city: {
-                name: string;
-              };
-            };
-          }[];
-        }>
-    );
-  //Imprime los resultados en la consola para depuración
-  console.log(results);
+
+  const { results } = await api.item.search(searchParams.search);
+
   return (
     <section>
       <article className="grid gap-4">
