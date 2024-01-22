@@ -2,6 +2,7 @@ import './globals.css'
 import type { Metadata } from 'next'
 import Link from "next/link";
 import { Inter } from 'next/font/google'
+import Footer from '@/components/Footer';
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -17,7 +18,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body >
+      <body className='flex flex-col min-h-screen'>
         <header className='flex h-16  bg-blue-300  '>
           <form action="/items" className='px-4 flex max-w-screen-lg flex-1 m-auto gap-4 items-center'>
             <Link href="/" className="text-yellow-900">Market Price</Link>
@@ -25,7 +26,9 @@ export default function RootLayout({
             <button className='bg-gray-200 px-2 py-1 text-slate-700'>Buscar</button>
           </form>
         </header>
-        <main className='max-w-screen-lg p-4 m-auto'>{children}</main>
+        <main className='max-w-screen-lg p-4 m-auto flex-1'>{children}</main>
+        <Footer/>
+
       </body>
     </html>
   )
